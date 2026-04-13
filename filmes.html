@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Filmes</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #141414;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #e50914;
+    }
+
+    input {
+        padding: 10px;
+        width: 250px;
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .add { background: #28a745; color: white; }
+    .remove { background: #dc3545; color: white; }
+    .action { background: #007bff; color: white; }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    li {
+        background: #222;
+        margin: 8px auto;
+        padding: 10px;
+        width: 300px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    li:hover {
+        background: #333;
+        transform: scale(1.05);
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Lista de Filmes</h1>
+
+<input type="text" id="filmeInput" placeholder="Digite um filme">
+
+<br>
+
+<button class="add" onclick="adicionarFilme()">Adicionar</button>
+<button class="remove" onclick="removerUltimo()">Remover último</button>
+<button class="action" onclick="adicionarInicio()">Adicionar no início</button>
+<button class="action" onclick="removerInicio()">Remover início</button>
+<button class="action" onclick="removerPosicao()">Remover posição 1</button>
+<button class="action" onclick="adicionarPosicao()">Adicionar posição 1</button>
+
+<ul id="lista">
+
+
+    
+</ul>
+
+<script>
+
+let filmes = ["Vingadores", "Titanic", "Avatar"]
+
+function atualizarLista() {
+    let ul = document.getElementById("lista")
+    ul.innerHTML = ""
+
+    filmes.forEach((filme) => {
+        let li = document.createElement("li")
+        li.textContent = ` ${filme}`
+        ul.appendChild(li)
+    })
+}
+
+// push
+function adicionarFilme() {
+    let input = document.getElementById("filmeInput")
+    if(input.value !== "") {
+        filmes.push(input.value)
+        input.value = ""
+        atualizarLista()
+    }
+}
+
+// pop
+function removerUltimo() {
+    filmes.pop()
+    atualizarLista()
+}
+
+// unshift
+function adicionarInicio() {
+    filmes.unshift("Matrix")
+    atualizarLista()
+}
+
+// shift
+function removerInicio() {
+    filmes.shift()
+    atualizarLista()
+}
+
+// splice remover
+function removerPosicao() {
+    filmes.splice(1, 1)
+    atualizarLista()
+}
+
+// splice adicionar
+function adicionarPosicao() {
+    filmes.splice(1, 0, "Interestelar")
+    atualizarLista()
+}
+
+// iniciar
+atualizarLista()
+
+</script>
+
+</body>
+</html>
